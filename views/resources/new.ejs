@@ -1,0 +1,41 @@
+<!--
+  Step 1: This page must allow the user to create a new resource.
+-->
+<%- include ('../partials/header') %>
+
+<div class="container my-5">
+  <header>
+    <h1>New Collection</h1>
+  </header>
+  <hr>
+
+  <div>
+    <form action="/resources", method="POST">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" class="form-control summernote"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author</label>
+        <textarea name="author" class="form-control"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating(low, average, good, satisfacotry, excellent)</label>
+        <textarea name="rating" class="form-control"></textarea>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-dark">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include ('../partials/footer') %>
