@@ -16,7 +16,7 @@ const Index = function ({user}) {
 
   const getResources = async () => {
     const resourcesResp = await Axios.get('/api/resources');
-    if (resourcesResp.status === 200) setResources(blogsResp.data);
+    if (resourcesResp.status === 200) setResources(resourcesResp.data);
   };
 
   const deleteResource = async resource => {
