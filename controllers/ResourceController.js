@@ -26,13 +26,9 @@ exports.index = async (req, res) => {
       .populate('user')
       .sort({updatedAt: 'desc'});
 
-    res.render(`${viewPath}/index`, {
-      pageTitle: 'Collection',
-      resources: resources
-    });
+      res.status(200).json(resources);
   } catch (error) {
-    req.flash('danger', `There was an error displaying the collection: ${error}`);
-    res.redirect('/');
+    res.status(400).json({message: 'There was an error fetching the resource', error});
   }
 };
 
@@ -40,14 +36,10 @@ exports.show = async (req, res) => {
   try {
     const resource = await Resource.findById(req.params.id)
       .populate('user');
-    console.log(resource);
-    res.render(`${viewPath}/show`, {
-      pageTitle: resource.title,
-      resource: resource
-    });
+      res.status(200).json(resource);
+    
   } catch (error) {
-    req.flash('danger', `There was an error displaying this resource: ${error}`);
-    res.redirect('/');
+    res.status(400).json({message: "There was an error fetching the Resource"});
   }
 };
 
@@ -58,19 +50,16 @@ exports.new = (req, res) => {
 };
 
 exports.create = async (req, res) => {
+  console.log(req.body);
   try {
-    console.log(req.session.passport);
     const { user: email } = req.session.passport;
     const user = await User.findOne({email: email});
-    console.log('User', user);
+
     const resource = await Resource.create({user: user._id, ...req.body});
 
-    req.flash('success', 'Resource created successfully');
-    res.redirect(`/resources/${resource.id}`);
+    res.status(200).json(resource);
   } catch (error) {
-    req.flash('danger', `There was an error creating this resource: ${error}`);
-    req.session.formData = req.body;
-    res.redirect('/resources/new');
+    res.status(400).json({message: "There was an error creating the resource", error});
   }
 };
 
@@ -109,12 +98,9 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    console.log(req.body);
     await Resource.deleteOne({_id: req.body.id});
-    req.flash('success', 'The resource was deleted successfully');
-    res.redirect(`/resources`);
+    res.status(200).json({message: "Deleted!"});
   } catch (error) {
-    req.flash('danger', `There was an error deleting this resource: ${error}`);
-    res.redirect(`/resources`);
+    res.status(400).jason({message: "Oops! Got an Error"});
   }
 };

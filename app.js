@@ -22,6 +22,8 @@ mongoose.connect(process.env.DB_URI, {
   useCreateIndex: true
 }).catch(err => console.error(`Error: ${err}`));
 
+
+
 /*
   Step 3: Setup and configure Passport
 */
@@ -86,8 +88,17 @@ app.use('/', (req, res, next) => {
 const routes = require('./routes.js');
 app.use('/', routes);
 
+app.get('/test', (req, res) => {
+  res.status(200).json({message: 'Hello World'});
+});
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
 /*
   Step 8: Start the server
 */
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}`));

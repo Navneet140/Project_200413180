@@ -1,0 +1,19 @@
+import React from 'react';
+import { Container } from 'react-bootstrap';
+function About() {
+return (
+ <Container className="my-5">
+     <header class="jumbotron">
+         <h1>All About Me</h1>
+    
+     </header>
+
+     <div>
+        <p> Hi THis is Navneet and you are cureently viewing my Project!! I hope you liked it!</p>
+        </div>
+     </Container>
+
+);
+}
+
+export default About;
