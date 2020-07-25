@@ -11,6 +11,8 @@ const Edit = function (props) {
   const [inputs, setInputs] = useState({
     title: '',
     content: '',
+    author: '',
+    rating: ''
   });
 
   const [redirect, setRedirect] = useState(false);
@@ -91,7 +93,7 @@ const Edit = function (props) {
             <Form.Label>Author:</Form.Label>
             <Form.Control
               as="textarea"
-              name="content"
+              name="author"
               onChange={handleInputChange}
               value={inputs.author}
             />
@@ -101,7 +103,7 @@ const Edit = function (props) {
             <Form.Label>Rating:</Form.Label>
             <Form.Control
               as="textarea"
-              name="content"
+              name="rating"
               onChange={handleInputChange}
               value={inputs.rating}
             />

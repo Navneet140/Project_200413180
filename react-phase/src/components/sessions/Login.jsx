@@ -34,6 +34,7 @@ const Login = ({setUser}) => {
       toast("There was an issue logging you in. Please check your credentials.", {
         type: toast.TYPE.ERROR
       });
+      
     }
   };
 

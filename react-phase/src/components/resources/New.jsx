@@ -9,7 +9,8 @@ const New = function () {
   const [inputs, setInputs] = useState({
     title: '',
     content: '',
-    status: 'DRAFT'
+    author: '',
+    rating: ''
   });
 
   const [redirect, setRedirect] = useState(false);
@@ -83,7 +84,7 @@ const New = function () {
             <Form.Label>Author:</Form.Label>
             <Form.Control
               as="textarea"
-              name="content"
+              name="author"
               onChange={handleInputChange}
               value={inputs.author}
             />
@@ -93,7 +94,7 @@ const New = function () {
             <Form.Label>Rating:</Form.Label>
             <Form.Control
               as="textarea"
-              name="content"
+              name="rating"
               onChange={handleInputChange}
               value={inputs.rating}
             />
