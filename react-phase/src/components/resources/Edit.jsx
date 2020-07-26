@@ -10,7 +10,7 @@ const Edit = function (props) {
 
   const [inputs, setInputs] = useState({
     title: '',
-    content: '',
+    description: '',
     author: '',
     rating: ''
   });
@@ -80,12 +80,12 @@ const Edit = function (props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Content:</Form.Label>
+            <Form.Label>Description:</Form.Label>
             <Form.Control
               as="textarea"
-              name="content"
+              name="description"
               onChange={handleInputChange}
-              value={inputs.content}
+              value={inputs.description}
             />
           </Form.Group>
 
