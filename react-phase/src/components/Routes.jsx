@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Login from './sessions/Login';
 import Logout from './sessions/Logout';
+import Register from './users/Register';
 
 import Resources from './resources/Index';
 import NewResource from './resources/New';
@@ -31,6 +32,12 @@ function Routes ({user, setUser}) {
         renderProps => <Resources
           {...renderProps}
           user={user}
+        />
+      }/>
+      <Route exact path="/register" render={
+        renderProps => <Register
+          {...renderProps}
+          setUser={setUser}
         />
       }/>
       <Route exact path="/resources/new" component={NewResource}/>
