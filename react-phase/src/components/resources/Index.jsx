@@ -62,14 +62,14 @@ const Index = function ({user}) {
 
             <div className="card-body">
               <p className="card-text">
-                {resource.synopsis}
+                {resource.description}
               </p>
             </div>
 
             {user ? (
               <div className="card-footer">
                 <Link to={{
-                  pathname: "/blogs/edit",
+                  pathname: "/resources/edit",
                   state: {
                     id: resource._id
                   }
