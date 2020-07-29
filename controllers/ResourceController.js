@@ -82,7 +82,7 @@ exports.update = async (req, res) => {
     const user = await User.findOne({email: email});
 
     let resource = await Resource.findById(req.body.id);
-    if (!resource) throw new Error('Blog could not be found');
+    if (!resource) throw new Error('Resource could not be found');
 
     const attributes = {user: user._id, ...req.body};
     await resource.validate(attributes);

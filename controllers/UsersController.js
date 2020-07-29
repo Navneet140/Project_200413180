@@ -1,28 +1,15 @@
 const User = require('../models/User');
-const viewPath = 'users';
+const { loginUser } = require('./SessionsController');
 
-exports.new = (req, res) => {
-  res.render(`${viewPath}/new`, {
-    pageTitle: 'New User'
-  });
-};
 
-exports.create = async (req, res) => {
-  const userDetails = req.body;
-  req.session.flash = {};
-  
+  exports.create = async (req, res) => {
   try {
-    // Step 1: Create the new user and register them with Passport
-    const user = new User(req.body);
-    await User.register(user, req.body.password);
+    let user = new User(req.body);
+    user = await User.register(user, req.body.password);
 
-    req.flash('success', 'The user was successfully created');
-    res.redirect(`/login`);
+    return loginUser(user, req, res);
   } catch (error) {
-    console.log('Errors');
-    req.flash('danger', error.message);
-
-    req.session.formData = req.body;
-    res.redirect(`${viewPath}/new`);
+    console.error(error);
+    res.status(400).json({message: 'There was an issue while registering the user.', error});
   }
 };
